@@ -18,8 +18,8 @@ public class MainGameScreen extends BaseScreen {
 	private TextureRegion regionPinchos;
 	public MainGameScreen(MainGame game) {
 		super(game);
-		texturaPinchos=new Texture("pinchos.jpg");
-		textureJugator=new Texture("minijoe.jpg");
+		texturaPinchos=new Texture("pinchos.png");
+		textureJugator=new Texture("minijoe.png");
 		regionPinchos=new TextureRegion(texturaPinchos,0,64,128,64);
 	}
 	@Override
@@ -38,6 +38,7 @@ public class MainGameScreen extends BaseScreen {
 		Gdx.gl.glClearColor(0.4f,0.5f,0.8f,1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act();
+		compobarColisiones();
 		stage.draw();
 	}
 
