@@ -16,11 +16,13 @@ public class MainGameScreen extends BaseScreen {
 	private ActorPinchos pinchos;
 	private Texture textureJugator,texturaPinchos;
 	private TextureRegion regionPinchos;
+	private MainGame game;
 	public MainGameScreen(MainGame game) {
 		super(game);
 		texturaPinchos=new Texture("pinchos.png");
 		textureJugator=new Texture("minijoe.png");
 		regionPinchos=new TextureRegion(texturaPinchos,0,64,128,64);
+		this.game=game;
 	}
 	@Override
 	public void show() {
@@ -48,6 +50,7 @@ public class MainGameScreen extends BaseScreen {
 		{
 			System.out.println("Collision");
 			jugador.setAlive(false);
+			game.setScreen(game.gameOverScreen);
 		}
 	}
 	@Override
