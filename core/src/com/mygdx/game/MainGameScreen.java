@@ -4,6 +4,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.mygdx.game.actors.ActorJugador;
@@ -14,20 +15,19 @@ public class MainGameScreen extends BaseScreen {
 	private Stage stage;
 	private ActorJugador jugador;
 	private ActorPinchos pinchos;
-	private Texture textureJugator,texturaPinchos;
+	private Texture texturaPinchos;
 	private TextureRegion regionPinchos;
+	private TextureAtlas textureAtlas;
 	private MainGame game;
 	public MainGameScreen(MainGame game) {
 		super(game);
 		texturaPinchos=new Texture("pinchos.png");
-		textureJugator=new Texture("minijoe.png");
 		regionPinchos=new TextureRegion(texturaPinchos,0,64,128,64);
-		this.game=game;
 	}
 	@Override
 	public void show() {
 		stage=new Stage();
-		jugador=new ActorJugador(textureJugator);
+		jugador=new ActorJugador(textureAtlas);
 		pinchos=new ActorPinchos(regionPinchos);
 		stage.addActor(jugador);
 		stage.addActor(pinchos);
@@ -48,7 +48,7 @@ public class MainGameScreen extends BaseScreen {
 	{
 		if(jugador.isAlive()&&jugador.getX()+jugador.getWidth()> pinchos.getX())
 		{
-			System.out.println("Collision");
+			//System.out.println("Collision");
 			jugador.setAlive(false);
 			game.setScreen(game.gameOverScreen);
 		}
@@ -75,6 +75,7 @@ public class MainGameScreen extends BaseScreen {
 
 	@Override
 	public void dispose() {
-		textureJugator.dispose();
+		texturaPinchos.dispose();
+		textureAtlas.dispose();
 	}
 }
